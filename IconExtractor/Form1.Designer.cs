@@ -270,7 +270,6 @@ namespace IconExtractor
             // 
             // toolStripMenuItem12
             // 
-            this.toolStripMenuItem12.Enabled = false;
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
             this.toolStripMenuItem12.Size = new System.Drawing.Size(246, 22);
             this.toolStripMenuItem12.Text = "源代码...";

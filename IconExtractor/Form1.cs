@@ -299,7 +299,7 @@ namespace IconExtractor
         private void toolStripMenuItem12_Click(object sender, EventArgs e)
         {
             ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.FileName = "";
+            processStartInfo.FileName = "https://github.com/he55/IconExtractor";
             processStartInfo.UseShellExecute = true;
 
             Process.Start(processStartInfo);
