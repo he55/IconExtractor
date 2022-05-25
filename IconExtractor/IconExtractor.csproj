@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Version>1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
