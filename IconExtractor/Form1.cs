@@ -28,6 +28,17 @@ namespace IconExtractor
             pictureBox1.Size = new Size(0, 0);
         }
 
+        void SaveRecentFile(string path)
+        {
+            if (_recentFiles.Count == 0 || _recentFiles[0] != path)
+            {
+                if (_recentFiles.Contains(path))
+                    _recentFiles.Remove(path);
+                _recentFiles.Insert(0, path);
+                File.WriteAllLines(_recentPath, _recentFiles);
+            }
+        }
+
         void LoadFile(string filePath)
         {
             _filePath = filePath;
@@ -43,12 +54,8 @@ namespace IconExtractor
 
             this.Text = $"{_title} - \"{filePath}\"";
             toolStripStatusLabel3.Text = "正在加载数据...";
+            SaveRecentFile(filePath);
             Application.DoEvents();
-
-            if (_recentFiles.Contains(filePath))
-                _recentFiles.Remove(filePath);
-            _recentFiles.Insert(0, filePath);
-            File.WriteAllLines(_recentPath, _recentFiles);
 
             _nIcons = PInvoke.PrivateExtractIcons(filePath, 0, 0, 0, null, null, 0, 0);
             if (_nIcons == 0)
