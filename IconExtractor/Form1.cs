@@ -51,9 +51,8 @@ namespace IconExtractor
             toolStripMenuItem3.Enabled = false;
             toolStripMenuItem4.Enabled = false;
             toolStripStatusLabel1.Text = "0 个图标";
-
-            this.Text = $"{_title} - \"{filePath}\"";
             toolStripStatusLabel3.Text = "正在加载数据...";
+            this.Text = $"{_title} - \"{filePath}\"";
             SaveRecentFile(filePath);
             Application.DoEvents();
 
@@ -80,7 +79,6 @@ namespace IconExtractor
                 Bitmap bitmap = icon.ToBitmap();
                 imageList.Images.Add(bitmap);
                 icon.Dispose();
-
                 PInvoke.DestroyIcon(phicon[i]);
             }
 
