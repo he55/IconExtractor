@@ -11,15 +11,15 @@ namespace IconExtractor
 {
     public partial class Form1 : Form
     {
-        private string _title;
-        private string _filePath;
-        private string _recentPath;
-        private List<string> _recentFiles;
-        private ImageList _imageList;
-        private Bitmap _bitmap;
-        private int _nIconIndex;
-        private int _iconSize = 64;
-        private uint _nIcons;
+        string _title;
+        string _filePath;
+        string _recentPath;
+        List<string> _recentFiles;
+        ImageList _imageList;
+        Bitmap _bitmap;
+        int _nIconIndex;
+        int _iconSize = 64;
+        uint _nIcons;
 
         public Form1()
         {
@@ -28,7 +28,7 @@ namespace IconExtractor
             pictureBox1.Size = new Size(0, 0);
         }
 
-        private void LoadFile(string filePath)
+        void LoadFile(string filePath)
         {
             _filePath = filePath;
             _bitmap = null;
@@ -50,6 +50,7 @@ namespace IconExtractor
                 _recentFiles.Remove(filePath);
             }
             _recentFiles.Insert(0, filePath);
+            File.WriteAllLines(_recentPath, _recentFiles);
 
             _nIcons = PInvoke.PrivateExtractIcons(filePath, 0, 0, 0, null, null, 0, 0);
             if (_nIcons == 0)
@@ -95,7 +96,7 @@ namespace IconExtractor
             toolStripStatusLabel3.Text = "完成";
         }
 
-        private void LoadImage()
+        void LoadImage()
         {
             if (_nIcons == 0)
             {
@@ -123,8 +124,7 @@ namespace IconExtractor
             _ = PInvoke.DestroyIcon(phicon[0]);
         }
 
-
-        #region 窗体事件
+        #region 控件事件
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -135,11 +135,6 @@ namespace IconExtractor
                 string[] paths = File.ReadAllLines(_recentPath);
                 _recentFiles.AddRange(paths);
             }
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            File.WriteAllLines(_recentPath, _recentFiles);
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -161,11 +156,6 @@ namespace IconExtractor
             StringCollection files = ((DataObject)e.Data).GetFileDropList();
             LoadFile(files[0]);
         }
-
-        #endregion
-
-
-        #region 控件事件
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -201,7 +191,6 @@ namespace IconExtractor
         }
 
         #endregion
-
 
         #region 菜单事件
 

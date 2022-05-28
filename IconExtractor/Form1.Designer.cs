@@ -36,7 +36,7 @@ namespace IconExtractor
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -280,7 +280,7 @@ namespace IconExtractor
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(8, 22);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 21);
+            this.radioButton1.Size = new System.Drawing.Size(53, 16);
             this.radioButton1.TabIndex = 27;
             this.radioButton1.TabStop = true;
             this.radioButton1.Tag = "16";
@@ -293,7 +293,7 @@ namespace IconExtractor
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(77, 22);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 21);
+            this.radioButton2.Size = new System.Drawing.Size(53, 16);
             this.radioButton2.TabIndex = 28;
             this.radioButton2.TabStop = true;
             this.radioButton2.Tag = "24";
@@ -306,7 +306,7 @@ namespace IconExtractor
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(146, 22);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(59, 21);
+            this.radioButton3.Size = new System.Drawing.Size(53, 16);
             this.radioButton3.TabIndex = 29;
             this.radioButton3.TabStop = true;
             this.radioButton3.Tag = "32";
@@ -319,7 +319,7 @@ namespace IconExtractor
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(224, 22);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(59, 21);
+            this.radioButton4.Size = new System.Drawing.Size(53, 16);
             this.radioButton4.TabIndex = 30;
             this.radioButton4.TabStop = true;
             this.radioButton4.Tag = "48";
@@ -333,7 +333,7 @@ namespace IconExtractor
             this.radioButton5.Checked = true;
             this.radioButton5.Location = new System.Drawing.Point(8, 58);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(59, 21);
+            this.radioButton5.Size = new System.Drawing.Size(53, 16);
             this.radioButton5.TabIndex = 31;
             this.radioButton5.TabStop = true;
             this.radioButton5.Tag = "64";
@@ -346,7 +346,7 @@ namespace IconExtractor
             this.radioButton6.AutoSize = true;
             this.radioButton6.Location = new System.Drawing.Point(77, 58);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(59, 21);
+            this.radioButton6.Size = new System.Drawing.Size(53, 16);
             this.radioButton6.TabIndex = 32;
             this.radioButton6.TabStop = true;
             this.radioButton6.Tag = "96";
@@ -359,7 +359,7 @@ namespace IconExtractor
             this.radioButton7.AutoSize = true;
             this.radioButton7.Location = new System.Drawing.Point(146, 58);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(73, 21);
+            this.radioButton7.Size = new System.Drawing.Size(65, 16);
             this.radioButton7.TabIndex = 33;
             this.radioButton7.Tag = "128";
             this.radioButton7.Text = "128*128";
@@ -371,7 +371,7 @@ namespace IconExtractor
             this.radioButton8.AutoSize = true;
             this.radioButton8.Location = new System.Drawing.Point(224, 58);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(73, 21);
+            this.radioButton8.Size = new System.Drawing.Size(65, 16);
             this.radioButton8.TabIndex = 34;
             this.radioButton8.TabStop = true;
             this.radioButton8.Tag = "256";
@@ -412,7 +412,6 @@ namespace IconExtractor
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "IconExtractor";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
