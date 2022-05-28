@@ -46,9 +46,7 @@ namespace IconExtractor
             Application.DoEvents();
 
             if (_recentFiles.Contains(filePath))
-            {
                 _recentFiles.Remove(filePath);
-            }
             _recentFiles.Insert(0, filePath);
             File.WriteAllLines(_recentPath, _recentFiles);
 
@@ -66,7 +64,6 @@ namespace IconExtractor
             ImageList imageList = new ImageList();
             imageList.ImageSize = new Size(32, 32);
             listView1.LargeImageList = imageList;
-
             _imageList?.Dispose();
             _imageList = imageList;
 
@@ -77,7 +74,7 @@ namespace IconExtractor
                 imageList.Images.Add(bitmap);
                 icon.Dispose();
 
-                _ = PInvoke.DestroyIcon(phicon[i]);
+                PInvoke.DestroyIcon(phicon[i]);
             }
 
             listView1.BeginUpdate();
@@ -89,7 +86,6 @@ namespace IconExtractor
             listView1.EndUpdate();
 
             listView1.SelectedIndices.Add(0);
-
             toolStripMenuItem3.Enabled = true;
             toolStripMenuItem4.Enabled = true;
             toolStripStatusLabel1.Text = $"{nIcons} 个图标";
@@ -99,9 +95,7 @@ namespace IconExtractor
         void LoadImage()
         {
             if (_nIcons == 0)
-            {
                 return;
-            }
 
             IntPtr[] phicon = new IntPtr[1];
             uint[] piconid = new uint[1];
@@ -116,12 +110,11 @@ namespace IconExtractor
             {
                 Bitmap bitmap = icon.ToBitmap();
                 pictureBox1.Image = bitmap;
-
                 _bitmap?.Dispose();
                 _bitmap = bitmap;
             }
 
-            _ = PInvoke.DestroyIcon(phicon[0]);
+            PInvoke.DestroyIcon(phicon[0]);
         }
 
         #region 控件事件
@@ -140,15 +133,10 @@ namespace IconExtractor
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             StringCollection files = ((DataObject)e.Data).GetFileDropList();
-            if (files.Count > 0 &&
-                (files[0].EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || files[0].EndsWith(".dll", StringComparison.OrdinalIgnoreCase)))
-            {
+            if (files.Count > 0 && (files[0].EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || files[0].EndsWith(".dll", StringComparison.OrdinalIgnoreCase)))
                 e.Effect = DragDropEffects.All;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
         }
 
         private void Form1_DragDrop(object sender, DragEventArgs e)
@@ -185,7 +173,6 @@ namespace IconExtractor
 
                 DataObject dataObject = new DataObject();
                 dataObject.SetFileDropList(new StringCollection { pngfile });
-
                 DoDragDrop(dataObject, DragDropEffects.Move);
             }
         }
@@ -199,9 +186,7 @@ namespace IconExtractor
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Resource Files (*.exe;*.dll)|*.exe;*.dll|All Files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
                 LoadFile(openFileDialog.FileName);
-            }
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -211,11 +196,8 @@ namespace IconExtractor
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.FileName = $"{Path.GetFileName(_filePath)}.{_nIconIndex}.png";
                 saveFileDialog.Filter = "PNG Files (*.png)|*.png";
-
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
                     _bitmap.Save(saveFileDialog.FileName, ImageFormat.Png);
-                }
             }
         }
 
@@ -228,9 +210,7 @@ namespace IconExtractor
                 {
                     string folder = Path.Combine(folderBrowserDialog.SelectedPath, Path.GetFileNameWithoutExtension(_filePath));
                     if (!Directory.Exists(folder))
-                    {
                         Directory.CreateDirectory(folder);
-                    }
 
                     toolStripStatusLabel3.Text = "正在保存图片...";
                     Application.DoEvents();
@@ -248,7 +228,7 @@ namespace IconExtractor
                             bitmap.Save(pngfile, ImageFormat.Png);
                         }
 
-                        _ = PInvoke.DestroyIcon(phicon[i]);
+                        PInvoke.DestroyIcon(phicon[i]);
                     }
                     toolStripStatusLabel3.Text = "完成";
                 }
