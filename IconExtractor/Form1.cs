@@ -168,11 +168,11 @@ namespace IconExtractor
         {
             if (_bitmap != null)
             {
-                string pngfile = Path.Combine(Path.GetTempPath(), $"{Path.GetFileName(_filePath)}.{_nIconIndex}.png");
-                _bitmap.Save(pngfile, ImageFormat.Png);
+                string pngFile = Path.Combine(Path.GetTempPath(), $"{Path.GetFileName(_filePath)}.{_nIconIndex}.png");
+                _bitmap.Save(pngFile, ImageFormat.Png);
 
                 DataObject dataObject = new DataObject();
-                dataObject.SetFileDropList(new StringCollection { pngfile });
+                dataObject.SetFileDropList(new StringCollection { pngFile });
                 DoDragDrop(dataObject, DragDropEffects.Move);
             }
         }
@@ -184,7 +184,7 @@ namespace IconExtractor
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Resource Files (*.exe;*.dll)|*.exe;*.dll|All Files (*.*)|*.*";
+            openFileDialog.Filter = "Resource Files|*.exe;*.dll|All Files|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 LoadFile(openFileDialog.FileName);
         }
@@ -195,7 +195,7 @@ namespace IconExtractor
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.FileName = $"{Path.GetFileName(_filePath)}.{_nIconIndex}.png";
-                saveFileDialog.Filter = "PNG Files (*.png)|*.png";
+                saveFileDialog.Filter = "PNG Files|*.png";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     _bitmap.Save(saveFileDialog.FileName, ImageFormat.Png);
             }
@@ -224,8 +224,8 @@ namespace IconExtractor
                         using (Icon icon = Icon.FromHandle(phicon[i]))
                         using (Bitmap bitmap = icon.ToBitmap())
                         {
-                            string pngfile = Path.Combine(folder, $"{i}.png");
-                            bitmap.Save(pngfile, ImageFormat.Png);
+                            string pngFile = Path.Combine(folder, $"{i}.png");
+                            bitmap.Save(pngFile, ImageFormat.Png);
                         }
 
                         PInvoke.DestroyIcon(phicon[i]);
@@ -246,17 +246,15 @@ namespace IconExtractor
             foreach (string item in _recentFiles)
             {
                 ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(item);
-                toolStripMenuItem.Click += ToolStripMenuItem_Click;
+                toolStripMenuItem.Click += (object sender_, EventArgs e_) =>
+                {
+                    LoadFile(((ToolStripMenuItem)sender_).Text);
+                };
                 toolStripMenuItem6.DropDownItems.Add(toolStripMenuItem);
             }
 
             toolStripMenuItem7.Enabled = _recentFiles.Count != 0;
             toolStripMenuItem6.DropDownItems.Add(toolStripMenuItem7);
-        }
-
-        private void ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadFile(((ToolStripMenuItem)sender).Text);
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
@@ -267,11 +265,11 @@ namespace IconExtractor
 
         private void toolStripMenuItem12_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.FileName = "https://github.com/he55/IconExtractor";
-            processStartInfo.UseShellExecute = true;
-
-            Process.Start(processStartInfo);
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/he55/IconExtractor",
+                UseShellExecute = true
+            });
         }
 
         #endregion

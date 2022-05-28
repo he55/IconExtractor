@@ -1,5 +1,4 @@
-﻿
-namespace IconExtractor
+﻿namespace IconExtractor
 {
     partial class Form1
     {
@@ -467,4 +466,3 @@ namespace IconExtractor
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
-
